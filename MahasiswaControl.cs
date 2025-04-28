@@ -41,6 +41,19 @@ namespace tpmodul10_103022330067.Controllers
             return Ok("Mahasiswa berhasil ditambahkan.");
         }
 
+        [HttpPut("{index}")]
+        public ActionResult UpdateMahasiswa(int index, [FromBody] Mahasiswa updatedMahasiswa)
+        {
+            if (index < 0 || index >= mahasiswaList.Count)
+                return NotFound("Index tidak ditemukan.");
+
+            mahasiswaList[index].Nama = updatedMahasiswa.Nama;
+            mahasiswaList[index].Nim = updatedMahasiswa.Nim;
+
+            return Ok("Mahasiswa berhasil diupdate.");
+        }
+
+
         [HttpDelete("{index}")]
         public ActionResult DeleteMahasiswa(int index)
         {
